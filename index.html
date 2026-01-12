@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Smart Home Dashboard</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+body{
+    font-family:'Inter',sans-serif;
+    background:#0a0a0a;
+    color:white;
+}
+.glass{
+    background: rgba(255,255,255,.05);
+    backdrop-filter: blur(12px);
+    border:1px solid rgba(255,255,255,.1);
+    transition:.3s;
+}
+.glass:hover{
+    border-color:#3b82f6;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Top Bar -->
+<nav class="flex justify-between items-center p-5 bg-black/60 backdrop-blur sticky top-0">
+    <h1 class="text-xl font-bold text-blue-500">Smart Home Dashboard</h1>
+    <a href="index.html" class="text-gray-400 hover:text-blue-400">← Back to Home</a>
+</nav>
+
+<!-- Stats -->
+<section class="max-w-6xl mx-auto px-6 py-8 grid md:grid-cols-4 gap-6">
+
+<div class="glass p-6 rounded-xl text-center">
+<h2 class="text-3xl font-bold text-blue-400">5</h2>
+<p class="text-gray-400">Connected Devices</p>
+</div>
+
+<div class="glass p-6 rounded-xl text-center">
+<h2 class="text-3xl font-bold text-green-400">3</h2>
+<p class="text-gray-400">Devices ON</p>
+</div>
+
+<div class="glass p-6 rounded-xl text-center">
+<h2 class="text-3xl font-bold text-yellow-400">2</h2>
+<p class="text-gray-400">Devices OFF</p>
+</div>
+
+<div class="glass p-6 rounded-xl text-center">
+<h2 class="text-3xl font-bold text-purple-400">78%</h2>
+<p class="text-gray-400">Energy Efficiency</p>
+</div>
+
+</section>
+
+<!-- Appliance Control -->
+<section class="max-w-6xl mx-auto px-6 py-10">
+<h2 class="text-2xl font-bold mb-6">Device Control Panel</h2>
+
+<div class="grid md:grid-cols-3 gap-8">
+
+<div class="glass p-6 rounded-xl">
+<h3 class="text-xl mb-2">💡 Living Room Light</h3>
+<p id="l1" class="text-gray-400 mb-4">Status: OFF</p>
+<button onclick="toggle('l1')" class="bg-blue-600 px-4 py-2 rounded">Toggle</button>
+</div>
+
+<div class="glass p-6 rounded-xl">
+<h3 class="text-xl mb-2">🌀 Ceiling Fan</h3>
+<p id="f1" class="text-gray-400 mb-4">Status: OFF</p>
+<button onclick="toggle('f1')" class="bg-blue-600 px-4 py-2 rounded">Toggle</button>
+</div>
+
+<div class="glass p-6 rounded-xl">
+<h3 class="text-xl mb-2">❄ AC</h3>
+<p id="a1" class="text-gray-400 mb-4">Status: OFF</p>
+<button onclick="toggle('a1')" class="bg-blue-600 px-4 py-2 rounded">Toggle</button>
+</div>
+
+<div class="glass p-6 rounded-xl">
+<h3 class="text-xl mb-2">📺 Smart TV</h3>
+<p id="t1" class="text-gray-400 mb-4">Status: OFF</p>
+<button onclick="toggle('t1')" class="bg-blue-600 px-4 py-2 rounded">Toggle</button>
+</div>
+
+<div class="glass p-6 rounded-xl">
+<h3 class="text-xl mb-2">🔒 Main Door</h3>
+<p id="d1" class="text-gray-400 mb-4">Status: Locked</p>
+<button onclick="toggleDoor()" class="bg-blue-600 px-4 py-2 rounded">Toggle</button>
+</div>
+
+</div>
+</section>
+
+<script>
+let devices={
+ l1:false,f1:false,a1:false,t1:false,d1:true
+};
+
+function toggle(id){
+ devices[id]=!devices[id];
+ document.getElementById(id).innerText="Status: "+(devices[id]?"ON":"OFF");
+}
+
+function toggleDoor(){
+ devices.d1=!devices.d1;
+ document.getElementById("d1").innerText="Status: "+(devices.d1?"Locked":"Unlocked");
+}
+</script>
+
+</body>
+</html>
